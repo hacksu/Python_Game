@@ -2,63 +2,28 @@
 import time
 
 #welcoming the user
-print ("Hello, Time to play hangman! This is a test")
+print("Hello, Time to play hangman! This is a test")
 print("I hope that it works!")
 
 
-#wait for 1 second
-time.sleep(1)
+#wait for 1.5 second
+time.sleep(1.5)
 
-time.sleep(0.5)
-
-userinput = input("Type in the hangman word for your choice: ")
-type(userinput)
 #here we set the secret
 
-word = userinput
+word = input("Type in the hangman word for your choice: ")
 
 
 #creates an variable with an empty value
 guesses = ''
 
-#determine the number of turns
-turns = 10
+#determine the number of failed guesses before you lose
+failed = 0
 
 # Create a while loop
 
-#check if the turns are more than zero
-while turns > 0:
-
-    # make a counter that starts with zero
-    failed = 0
-
-    # for every character in secret_word
-    for char in word:
-
-    # see if the character is in the players guess
-        if char in guesses:
-
-        # print then out the character
-            print (char),
-
-        else:
-
-        # if not found, print a dash
-            print ("_"),
-
-        # and increase the failed counter with one
-            failed += 1
-
-    # if failed is equal to zero
-
-    # print You Won
-    if failed == 0:
-        print ("You won")
-
-    # exit the script
-        break
-
-    print
+#check if the failed are more than zero
+while failed < 10:
 
     # ask the user go guess a character
     guess = input("guess a character:")
@@ -66,20 +31,48 @@ while turns > 0:
     # set the players guess to guesses
     guesses += guess
 
+    correct = True
+
+    # for every character in secret_word
+    for char in word:
+
+        # see if the character is in the players guess
+        if char in guesses:
+
+            # print then out the character
+            print(char, end=''),
+
+        else:
+
+            # if not found, print a dash
+            print("_", end=''),
+
+            # and increase the failed counter with one
+            correct = False
+
+    # if failed is equal to zero
+    print('')
+    # print You Won
+    if correct:
+        print("You won")
+
+        # exit the script
+        break
+
     # if the guess is not found in the secret word
     if guess not in word:
 
-     # turns counter decreases with 1 (now 9)
-        turns -= 1
+        
+        failed += 1
 
-    # print wrong
-        print ("Wrong")
+        # print wrong
+        print("Wrong")
 
-    # how many turns are left
-        print ("You have", + turns, 'more guesses')
+        # how many failures are left
+        print("You have", 10 - failed, 'more guesses')
 
-    # if the turns are equal to zero
-        if turns == 0:
+        # if the failed are equal to zero
+        if failed > 9:
 
-        # print "You Loose"
-            print ("You Loose")
+            # print "You Loose"
+            print("You Loose")
