@@ -91,4 +91,9 @@ while run:
             if turns == 0:
 
             # print "You Loose"
-                print ("You Loose")
+                print ("You Loose. Play again? [y/n]")
+                again = input()
+
+                if again == 'n':
+                    print('Thanks for playing!')
+                    run = False
