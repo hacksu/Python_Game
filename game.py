@@ -11,75 +11,89 @@ time.sleep(1)
 
 time.sleep(0.5)
 
-userinput = input("Type in the hangman word for your choice: ")
-type(userinput)
-#here we set the secret
+run = True
 
-word = userinput
+while run:
 
+    userinput = input("Type in the hangman word for your choice: ")
+    type(userinput)
+    #here we set the secret
 
-#creates an variable with an empty value
-guesses = ''
+    word = userinput
 
-#determine the number of turns
-turns = 10
+    again = ''
 
-# Create a while loop
+    #creates an variable with an empty value
+    guesses = ''
 
-#check if the turns are more than zero
-while turns > 0:
+    #determine the number of turns
+    turns = 10
 
-    # make a counter that starts with zero
-    failed = 0
+    # Create a while loop
 
-    # for every character in secret_word
-    for char in word:
+    #check if the turns are more than zero
+    while turns > 0:
 
-    # see if the character is in the players guess
-        if char in guesses:
+        # make a counter that starts with zero
+        failed = 0
 
-        # print then out the character
-            print (char),
+        # for every character in secret_word
+        for char in word:
 
-        else:
+        # see if the character is in the players guess
+            if char in guesses:
 
-        # if not found, print a dash
-            print ("_"),
+            # print then out the character
+                print (char),
 
-        # and increase the failed counter with one
-            failed += 1
+            else:
 
-    # if failed is equal to zero
+            # if not found, print a dash
+                print ("_"),
 
-    # print You Won
-    if failed == 0:
-        print ("You won")
+            # and increase the failed counter with one
+                failed += 1
 
-    # exit the script
-        break
+        # if failed is equal to zero
 
-    print
+        # print You Won, asks to play again
+        if failed == 0:
+            print ("You won. Play again? [y/n]")
+            again = input()
 
-    # ask the user go guess a character
-    guess = input("guess a character:")
+        # Reloops if play again, otherwise exit
+            if again == 'n':
+                print('Thanks for playing!')
+                run = False
+            break
 
-    # set the players guess to guesses
-    guesses += guess
+        print
 
-    # if the guess is not found in the secret word
-    if guess not in word:
+        # ask the user go guess a character
+        guess = input("guess a character:")
 
-     # turns counter decreases with 1 (now 9)
-        turns -= 1
+        # set the players guess to guesses
+        guesses += guess
 
-    # print wrong
-        print ("Wrong")
+        # if the guess is not found in the secret word
+        if guess not in word:
 
-    # how many turns are left
-        print ("You have", + turns, 'more guesses')
+         # turns counter decreases with 1 (now 9)
+            turns -= 1
 
-    # if the turns are equal to zero
-        if turns == 0:
+        # print wrong
+            print ("Wrong")
 
-        # print "You Loose"
-            print ("You Loose")
+        # how many turns are left
+            print ("You have", + turns, 'more guesses')
+
+        # if the turns are equal to zero
+            if turns == 0:
+
+            # print "You Loose"
+                print ("You Loose. Play again? [y/n]")
+                again = input()
+
+                if again == 'n':
+                    print('Thanks for playing!')
+                    run = False
