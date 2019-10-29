@@ -22,7 +22,7 @@ word = userinput
 guesses = ''
 
 #determine the number of turns
-turns = 10
+turns = 11
 
 # Create a while loop
 
@@ -44,7 +44,7 @@ while turns > 0:
         else:
 
         # if not found, print a dash
-            print ("_"),
+            print ("not in word :("),
 
         # and increase the failed counter with one
             failed += 1
