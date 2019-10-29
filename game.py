@@ -22,7 +22,7 @@ word = userinput
 guesses = ''
 
 #determine the number of turns
-turns = 10
+turns = 11
 
 # Create a while loop
 
