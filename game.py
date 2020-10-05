@@ -1,33 +1,67 @@
-#importing the time module
-import time
+import getpass
 
 #welcoming the user
-print ("Hello, Time to play hangman! This is a test")
+print("Hello, Time to play hangman! This is a test")
 print("I hope that it works!")
 
 
-#wait for 1 second
-time.sleep(1)
+# using getpass module to hide the word given by host from the solver
+userinput = getpass.getpass("Type in the hangman word of your choice: ")
 
-time.sleep(0.5)
+# making the puzzle
+word = ""
+if len(userinput) <= 7 and len(userinput) > 0:
+    for i in range(0, len(userinput)):
+        if i%2 == 0:
+            word += "_ "
+        else:
+            word += userinput[i] + " "
 
-userinput = input("Type in the hangman word for your choice: ")
-type(userinput)
-#here we set the secret
+else:
+    for i in range(0, len(userinput)):
+        if i%3 == 0:
+            word += userinput[i] + " "
+        else:
+            word += "_ "
 
-word = userinput
+print(word.upper())
 
-
-#creates an variable with an empty value
+#creates a variable with an empty value
 guesses = ''
 
 #determine the number of turns
-turns = 11
+turns = len(userinput)
 
 # Create a while loop
 
 #check if the turns are more than zero
 while turns > 0:
+
+    # ask the user go guess a character
+    guess = input("Guess a character: ")
+
+    # set the players guess to guesses
+    guesses += guess
+
+    # if the guess is not found in the secret word
+    if guess not in userinput:
+
+    # turns counter decreases by 1
+        turns -= 1
+
+    # print wrong
+        print("Wrong")
+
+    # how many turns are left
+        print("You have " + str(turns) + 'more guesses left')
+
+    # if the turns are equal to zero
+        if turns == 0:
+
+        # print "You Lose"
+            print("You lose")
+            break
+
 
     # make a counter that starts with zero
     failed = 0
@@ -36,16 +70,16 @@ while turns > 0:
     for char in word:
 
     # see if the character is in the players guess
-        if char in guesses:
+        if char in guesses and char is not " " and char is not "_":
 
         # print then out the character
-            print (char),
+            print(char, end = "")
 
         else:
 
         # if not found, print a dash
-            print ("not in word :("),
-
+            print()
+ 
         # and increase the failed counter with one
             failed += 1
 
@@ -57,29 +91,3 @@ while turns > 0:
 
     # exit the script
         break
-
-    print
-
-    # ask the user go guess a character
-    guess = input("guess a character:")
-
-    # set the players guess to guesses
-    guesses += guess
-
-    # if the guess is not found in the secret word
-    if guess not in word:
-
-     # turns counter decreases with 1 (now 9)
-        turns -= 1
-
-    # print wrong
-        print ("Wrong")
-
-    # how many turns are left
-        print ("You have", + turns, 'more guesses')
-
-    # if the turns are equal to zero
-        if turns == 0:
-
-        # print "You Loose"
-            print ("You Loose")
