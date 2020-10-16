@@ -1,9 +1,23 @@
-#importing the time module
+#importing some useful modules
 import time
+import sys
+import os
 
 #welcoming the user
 print ("Hello, Time to play hangman! This is a test")
 print("I hope that it works!")
+
+# define a function for clearing the screen, no peeping!
+def clear_screen():
+    # here, we check if this game is run on a windows system, or other
+    if sys.platform == "win32":
+        # in a windows console, you type "cls" to clear the screen...
+        command = "cls"
+    else:
+        # ... on linux or mac, you type "clear" instead
+        command = "clear"
+    # this will run that command and clear the screen
+    os.system(command)
 
 
 #wait for 1 second
@@ -19,18 +33,24 @@ word = userinput
 
 
 #creates an variable with an empty value
-guesses = ''
+guesses = []
 
 #determine the number of turns
 turns = 11
+
+# make a counter that starts with zero
+failed = 0
+
+# clear the screen so that the other person can't see the word
+clear_screen()
+
+print("The word is", len(word), "characters long!")
+print("- " * len(word))
 
 # Create a while loop
 
 #check if the turns are more than zero
 while turns > 0:
-
-    # make a counter that starts with zero
-    failed = 0
 
     # for every character in secret_word
     for char in word:
